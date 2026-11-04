@@ -1,0 +1,4 @@
+package com.wellcheck.controller;
+import com.wellcheck.dto.ApiDtos.AerialRequest; import com.wellcheck.service.AiGatewayService; import jakarta.validation.Valid; import org.springframework.security.core.Authentication; import org.springframework.web.bind.annotation.*; import java.util.*;
+@RestController @RequestMapping("/api/admin") public class AiController { private final AiGatewayService ai; public AiController(AiGatewayService a){ai=a;} @PostMapping("/ai/analyse-report") Map<?,?> analyse(@RequestBody Map<String,Object> body){return ai.analyse(body);} @PostMapping("/aerial/missions") Map<?,?> mission(Authentication a,@Valid @RequestBody AerialRequest r){return ai.createMission(UUID.fromString(a.getName()),r);} @GetMapping("/aerial/missions") List<Map<String,Object>> missions(){return ai.missions();} }
+

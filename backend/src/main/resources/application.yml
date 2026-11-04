@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: wellcheck-backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/wellcheck}
+    username: ${SPRING_DATASOURCE_USERNAME:wellcheck}
+    password: ${SPRING_DATASOURCE_PASSWORD:wellcheck}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 30MB
+server:
+  error:
+    include-message: never
+wellcheck:
+  jwt-secret: ${WELLCHECK_JWT_SECRET:development-only-replace-with-at-least-32-characters}
+  ai-url: ${WELLCHECK_AI_URL:http://localhost:8000}
+  upload-dir: ${WELLCHECK_UPLOAD_DIR:./uploads}
+
